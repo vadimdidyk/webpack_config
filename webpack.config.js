@@ -15,6 +15,7 @@ const config = {
 
 	devServer: {
 		contentBase: path.resolve(__dirname, 'dist/img'),
+		// hot: true,
 		stats: 'errors-only',
 		// open: true, // Opens on launch
 		port: 3000,
@@ -73,15 +74,19 @@ const config = {
 	plugins: [
 		new CleanWebpackPlugin(['dist']),
 		new HtmlWebpackPlugin({
-    	template: 'index.html'
+    	template: 'index.html',
+    	minify: false
   	}),
   	new HtmlWebpackPlugin({
   		template: 'second.html',
-      filename: 'second.html'
+      filename: 'second.html',
+      minify: false
     }),
 		new ExtractTextPlugin({
 			filename: './css/main.css'
-		})
+		}),
+		// new webpack.NamedModulesPlugin(),
+		// new webpack.HotModuleReplacementPlugin()
 	]
 }
 
