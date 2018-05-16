@@ -75,6 +75,10 @@ const config = {
 		new HtmlWebpackPlugin({
     	template: 'index.html'
   	}),
+  	new HtmlWebpackPlugin({
+  		template: 'second.html',
+      filename: 'second.html'
+    }),
 		new ExtractTextPlugin({
 			filename: './css/main.css'
 		})
