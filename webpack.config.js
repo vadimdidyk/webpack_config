@@ -3,6 +3,7 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const config = {
 
@@ -14,7 +15,7 @@ const config = {
 	},
 
 	devServer: {
-		contentBase: path.resolve(__dirname, 'dist/img'),
+		contentBase: path.resolve(__dirname, 'src'),
 		// hot: true,
 		stats: 'errors-only',
 		// open: true, // Opens on launch
@@ -25,7 +26,7 @@ const config = {
 	devtool: 'source-map',
 
 	module: {
-		noParse: /jquery|lodash/,
+		noParse: /jquery/,
 		rules: [
 		{
 			test: /\.js$/,
@@ -61,7 +62,7 @@ const config = {
 						outputPath: './img/',
 						publicPath: './img/'
 					}
-				}
+				},
 			]
 		},
 		{
@@ -78,8 +79,8 @@ const config = {
     	minify: false
   	}),
   	new HtmlWebpackPlugin({
-  		template: 'second.html',
-      filename: 'second.html',
+  		template: 'room.html',
+      filename: 'room.html',
       minify: false
     }),
 		new ExtractTextPlugin({
@@ -87,6 +88,7 @@ const config = {
 		}),
 		// new webpack.NamedModulesPlugin(),
 		// new webpack.HotModuleReplacementPlugin()
+		new CopyWebpackPlugin([{from: './img', to: '../dist/img/'}])
 	]
 }
 
